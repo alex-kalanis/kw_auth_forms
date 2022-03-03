@@ -1,0 +1,16 @@
+{
+  "author": "kalanis",
+  "name": "kw_auth_forms",
+  "description": "Form authentication in KWCMS",
+  "source": "https://github.com/alex-kalanis/kw_auth_forms",
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "suggest": {
+  },
+  "require-dev": {
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
