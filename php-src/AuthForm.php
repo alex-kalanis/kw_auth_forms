@@ -45,7 +45,7 @@ class AuthForm
         // add rule to input
         $csrf->removeRules();
         $csrf->addRules([$digest]);
-        $boundForm->addControl($csrf);
+        $boundForm->addControlDefaultKey($csrf);
     }
 
     /**
@@ -80,6 +80,6 @@ class AuthForm
         // add rules to input
         $csrf->removeRules();
         $csrf->addRules([$match]);
-        $boundForm->addControl($csrf);
+        $boundForm->addControlDefaultKey($csrf);
     }
 }
