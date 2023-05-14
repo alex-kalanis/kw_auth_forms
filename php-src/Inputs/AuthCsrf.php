@@ -39,7 +39,7 @@ class AuthCsrf extends Hidden
      * @param string $errorMessage
      * @return $this
      */
-    public function setHidden(string $alias, ArrayAccess &$cookie, string $errorMessage = ''): parent
+    public function setHidden(string $alias, ArrayAccess &$cookie, string $errorMessage = ''): self
     {
         $this->csrf->init($cookie);
         $this->setEntry($alias);
