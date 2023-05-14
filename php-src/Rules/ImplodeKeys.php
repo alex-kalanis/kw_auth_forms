@@ -3,6 +3,7 @@
 namespace kalanis\kw_auth_forms\Rules;
 
 
+use kalanis\kw_auth\Interfaces\IStatus;
 use kalanis\kw_auth\Interfaces\IUserCert;
 use kalanis\kw_rules\Exceptions\RuleException;
 use kalanis\kw_rules\Interfaces\IValidate;
@@ -15,20 +16,26 @@ use kalanis\kw_rules\Interfaces\IValidate;
  */
 class ImplodeKeys extends ARule
 {
-    /** @var IUserCert|null */
+    /** @var IUserCert */
     protected $keySource = null;
+    /** @var IStatus */
+    protected $libStatus = null;
     /** @var string */
     protected $glue = '';
 
-    public function __construct(IUserCert $keySource, string $glue = '|')
+    public function __construct(IUserCert $keySource, IStatus $libStatus, string $glue = '|')
     {
         $this->keySource = $keySource;
+        $this->libStatus = $libStatus;
         $this->glue = $glue;
     }
 
     public function validate(IValidate $entry): void
     {
-        $col = implode($this->glue, $this->sentInputs($this->againstValue) + [$this->keySource->getPubSalt()]);
+        if (!$this->libStatus->allowCert($this->keySource->getStatus())) {
+            throw new RuleException($this->errorText);
+        }
+        $col = implode($this->glue, $this->sentInputs() + [$this->keySource->getPubSalt()]);
         if (1 !== openssl_verify($col, strval($entry->getValue()), $this->keySource->getPubKey(), OPENSSL_ALGO_SHA256)) {
             throw new RuleException($this->errorText);
         }

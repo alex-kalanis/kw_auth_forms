@@ -18,29 +18,31 @@ abstract class ARule extends OrigRule
     /** @var Form|null */
     protected $boundForm = null;
 
-    public function setForm(Form $boundForm): void
+    public function setBoundForm(Form $boundForm): void
     {
         $this->boundForm = $boundForm;
     }
 
     /**
-     * @param string[] $whichInputs
-     * @return string[]
+     * @return array<string|int, string|int|float|bool|null>
      * @throws RuleException
      */
-    protected function sentInputs(array $whichInputs)
+    protected function sentInputs()
     {
-        $this->checkForm();
-        $this->boundForm->setSentValues();
+        $this->getBoundForm()->setSentValues();
         // we want only predefined ones
-        $data = array_filter($this->boundForm->getValues(), function ($k) use ($whichInputs) {
+        $whichInputs = $this->againstValue;
+        if (!is_array($whichInputs)) {
+            throw new RuleException('Compare only against list of known keys!');
+        }
+        $data = array_filter($this->getBoundForm()->getValues(), function ($k) use ($whichInputs) {
             return in_array($k, $whichInputs);
         }, ARRAY_FILTER_USE_KEY);
 
         // now set it in predefined order
         $flippedInputs = array_flip($whichInputs);
         uksort($data, function ($a, $b) use ($flippedInputs) {
-            return strval($flippedInputs[$a]) <=> strval($flippedInputs[$b]);
+            return strcmp(strval($flippedInputs[$a]), strval($flippedInputs[$b]));
         });
 
         return $data;
@@ -48,11 +50,13 @@ abstract class ARule extends OrigRule
 
     /**
      * @throws RuleException
+     * @return Form
      */
-    protected function checkForm(): void
+    protected function getBoundForm(): Form
     {
         if (!$this->boundForm) {
             throw new RuleException('Set form first!');
         }
+        return $this->boundForm;
     }
 }

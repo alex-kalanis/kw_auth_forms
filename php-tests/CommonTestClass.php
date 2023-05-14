@@ -32,16 +32,18 @@ class MockUser implements IUserCert
     protected $group = 0;
     protected $class = 3;
     protected $display = '';
+    protected $status = null;
     protected $dir = '';
     protected $key = '';
     protected $salt = '';
 
-    public function setData(int $authId, string $authName, int $authGroup, int $authClass, string $displayName, string $dir): void
+    public function setData(int $authId, string $authName, int $authGroup, int $authClass, ?int $authStatus, string $displayName, string $dir): void
     {
         $this->authId = $authId;
         $this->authName = $authName;
         $this->group = $authGroup;
         $this->class = $authClass;
+        $this->status = $authStatus;
         $this->display = $displayName;
         $this->dir = $dir;
     }
@@ -70,6 +72,11 @@ class MockUser implements IUserCert
     public function getClass(): int
     {
         return $this->class;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
     }
 
     public function getDisplayName(): string
@@ -216,5 +223,19 @@ class MockArray implements ArrayAccess, Countable, Iterator
     public function count()
     {
         return count($this->vars);
+    }
+}
+
+
+class MockStatusNever implements \kalanis\kw_auth\Interfaces\IStatus
+{
+    public function allowLogin(?int $status): bool
+    {
+        return false;
+    }
+
+    public function allowCert(?int $status): bool
+    {
+        return false;
     }
 }

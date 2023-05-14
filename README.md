@@ -1,16 +1,25 @@
 # kw_auth_forms
 
-Authenticate that the data in form are valid and unchanged from author. Nice for checking
-when you need pass sensitive data.
+[![Build Status](https://app.travis-ci.com/alex-kalanis/kw_auth_forms.svg?branch=master)](https://app.travis-ci.com/github/alex-kalanis/kw_auth_forms)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_auth_forms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_auth_forms/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_auth_forms/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_auth_forms)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Downloads](https://img.shields.io/packagist/dt/alex-kalanis/kw_auth_forms.svg?v1)](https://packagist.org/packages/alex-kalanis/kw_auth_forms)
+[![License](https://poser.pugx.org/alex-kalanis/kw_auth_forms/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_auth_forms)
+[![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_auth_forms/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_auth_forms/?branch=master)
 
-Every check is done by user's certificates and with user's salt.
+Authenticate that the data in form are valid and unchanged from author.
+Nice for checking when you need to pass data sensitive on changes.
+
+Every check is done by user's certificates and with user's salt. Every
+check also can say if that user can use his certificates to check the data.
 
 ## PHP Installation
 
 ```
 {
     "require": {
-        "alex-kalanis/kw_auth_forms": "1.0"
+        "alex-kalanis/kw_auth_forms": "2.0"
     }
 }
 ```

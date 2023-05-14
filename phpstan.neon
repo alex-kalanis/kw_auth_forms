@@ -1,0 +1,19 @@
+parameters:
+	level: 9
+	paths:
+		- 'php-src'
+#	scanFiles:
+#		- 'php-tests/CommonTestClass.php'
+	excludePaths:
+		- 'php-tests/_autoload.php'
+		- 'php-tests/_bootstrap.php'
+#		- 'php-tests/CommonTestClass.php'
+	bootstrapFiles:
+		- 'php-tests/_autoload.php'
+	ignoreErrors:
+		- '#Parameter \#1 \$va[rl]u?e? of function [si][tn][rt]val expects#'
+		# quality WTF - strval, intval
+#		-
+#			message: '#Cannot call method [a-z]+\(\) on kalanis\\kw_cache\\Cache\\Formatted\|kalanis\\kw_cache\\Interfaces\\ICache\|null\.#'
+#			path: 'php-src/StaticCache.php'
+#			# quality WTF - already covered in that "exists" check

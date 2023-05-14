@@ -3,6 +3,7 @@
 namespace BasicTests;
 
 
+use kalanis\kw_auth\Statuses\Always;
 use kalanis\kw_auth_forms\AuthForm;
 use kalanis\kw_auth_forms\Rules\ImplodeHash;
 use kalanis\kw_rules\Exceptions\RuleException;
@@ -26,7 +27,7 @@ class FillTest extends \CommonTestClass
         $user->addCertInfo('empty', $salt);
 
         // set it
-        AuthForm::digest('dummy', new ImplodeHash($user), $form, $inputs, $cookie);
+        AuthForm::digest('dummy', new ImplodeHash($user, new Always()), $form, $inputs, $cookie);
 
         // validate
         $this->assertEquals($isValid, $form->isValid());
@@ -48,7 +49,7 @@ class FillTest extends \CommonTestClass
         $user->addCertInfo('empty', $salt);
 
         // set it
-        AuthForm::tokenAndDigest('dummy', new ImplodeHash($user), $form, $inputs, $cookie);
+        AuthForm::tokenAndDigest('dummy', new ImplodeHash($user, new Always()), $form, $inputs, $cookie);
 
         // validate
         $this->assertEquals($isValid, $form->isValid());

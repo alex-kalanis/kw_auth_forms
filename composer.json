@@ -11,12 +11,16 @@
     "type": "library",
     "require": {
         "ext-openssl": "*",
-        "alex-kalanis/kw_auth": ">=1.1",
+        "alex-kalanis/kw_auth": ">=2.0",
         "alex-kalanis/kw_forms": ">=2.2",
         "php": ">=7.3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=7.2"
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "psr/container": "=2.0.2",
+        "phpunit/phpunit": ">=7.2 <=9"
     },
     "suggest": {
     },
