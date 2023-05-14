@@ -37,7 +37,7 @@ class AuthCsrf extends Hidden
      * @param string $alias
      * @param ArrayAccess<string|int, string|int|float|bool|null> $cookie
      * @param string $errorMessage
-     * @return Hidden
+     * @return $this
      */
     public function setHidden(string $alias, ArrayAccess &$cookie, string $errorMessage = ''): parent
     {

@@ -24,8 +24,8 @@ abstract class ARule extends OrigRule
     }
 
     /**
-     * @return array<string|int, string|int|float|bool|null>
      * @throws RuleException
+     * @return array<string|int, string|int|float|bool|null>
      */
     protected function sentInputs()
     {
