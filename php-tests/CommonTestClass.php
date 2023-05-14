@@ -27,9 +27,9 @@ class CommonTestClass extends TestCase
 
 class MockUser implements IUserCert
 {
-    protected $authId = 0;
+    protected $authId = '0';
     protected $authName = '';
-    protected $group = 0;
+    protected $group = '0';
     protected $class = 3;
     protected $display = '';
     protected $status = null;
@@ -37,24 +37,24 @@ class MockUser implements IUserCert
     protected $key = '';
     protected $salt = '';
 
-    public function setData(int $authId, string $authName, int $authGroup, int $authClass, ?int $authStatus, string $displayName, string $dir): void
+    public function setUserData(?string $authId, ?string $authName, ?string $authGroup, ?int $authClass, ?int $authStatus, ?string $displayName, ?string $dir): void
     {
-        $this->authId = $authId;
-        $this->authName = $authName;
-        $this->group = $authGroup;
-        $this->class = $authClass;
+        $this->authId = $authId ?? $this->authId;
+        $this->authName = $authName ?? $this->authName;
+        $this->group = $authGroup ?? $this->group;
+        $this->class = $authClass ?? $this->class;
         $this->status = $authStatus;
-        $this->display = $displayName;
-        $this->dir = $dir;
+        $this->display = $displayName ?? $this->display;
+        $this->dir = $dir ?? $this->dir;
     }
 
-    public function addCertInfo(string $key, string $salt): void
+    public function addCertInfo(?string $key, ?string $salt): void
     {
-        $this->key = $key;
-        $this->salt = $salt;
+        $this->key = $key ?? $this->key;
+        $this->salt = $salt ?? $this->salt;
     }
 
-    public function getAuthId(): int
+    public function getAuthId(): string
     {
         return $this->authId;
     }
@@ -64,7 +64,7 @@ class MockUser implements IUserCert
         return $this->authName;
     }
 
-    public function getGroup(): int
+    public function getGroup(): string
     {
         return $this->group;
     }
