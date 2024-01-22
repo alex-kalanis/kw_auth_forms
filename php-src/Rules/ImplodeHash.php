@@ -3,8 +3,8 @@
 namespace kalanis\kw_auth_forms\Rules;
 
 
-use kalanis\kw_auth\Interfaces\IStatus;
-use kalanis\kw_auth\Interfaces\IUserCert;
+use kalanis\kw_accounts\Interfaces\IUserCert;
+use kalanis\kw_auth_sources\Interfaces\IStatus;
 use kalanis\kw_rules\Exceptions\RuleException;
 use kalanis\kw_rules\Interfaces\IValidate;
 

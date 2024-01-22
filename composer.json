@@ -11,8 +11,9 @@
     "type": "library",
     "require": {
         "ext-openssl": "*",
-        "alex-kalanis/kw_auth": ">=2.1",
-        "alex-kalanis/kw_forms": ">=2.2",
+        "alex-kalanis/kw_accounts": ">=1.0 <2",
+        "alex-kalanis/kw_auth_sources": ">=3.0 <4",
+        "alex-kalanis/kw_forms": ">=2.2 <3",
         "php": ">=7.3.0"
     },
     "require-dev": {

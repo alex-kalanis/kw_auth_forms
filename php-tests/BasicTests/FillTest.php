@@ -3,9 +3,9 @@
 namespace BasicTests;
 
 
-use kalanis\kw_auth\Statuses\Always;
 use kalanis\kw_auth_forms\AuthForm;
 use kalanis\kw_auth_forms\Rules\ImplodeHash;
+use kalanis\kw_auth_sources\Statuses\Always;
 use kalanis\kw_rules\Exceptions\RuleException;
 
 

@@ -3,10 +3,10 @@
 namespace BasicTests;
 
 
-use kalanis\kw_auth\Statuses\Always;
 use kalanis\kw_auth_forms\Rules\ARule;
 use kalanis\kw_auth_forms\Rules\ImplodeHash;
 use kalanis\kw_auth_forms\Rules\ImplodeKeys;
+use kalanis\kw_auth_sources\Statuses\Always;
 use kalanis\kw_forms\Adapters\ArrayAdapter;
 use kalanis\kw_forms\Exceptions\FormsException;
 use kalanis\kw_forms\Form;

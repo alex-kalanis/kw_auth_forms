@@ -1,6 +1,6 @@
 <?php
 
-use kalanis\kw_auth\Interfaces\IUserCert;
+use kalanis\kw_accounts\Interfaces\IUserCert;
 use kalanis\kw_forms\Form;
 use kalanis\kw_rules\Interfaces\IValidate;
 use PHPUnit\Framework\TestCase;
@@ -32,20 +32,22 @@ class MockUser implements IUserCert
     protected $group = '0';
     protected $class = 3;
     protected $display = '';
-    protected $status = null;
+    protected $status = 0;
     protected $dir = '';
     protected $key = '';
     protected $salt = '';
+    protected $extra = [];
 
-    public function setUserData(?string $authId, ?string $authName, ?string $authGroup, ?int $authClass, ?int $authStatus, ?string $displayName, ?string $dir): void
+    public function setUserData(?string $authId, ?string $authName, ?string $authGroup, ?int $authClass, ?int $authStatus, ?string $displayName, ?string $dir, ?array $extra = []): void
     {
         $this->authId = $authId ?? $this->authId;
         $this->authName = $authName ?? $this->authName;
         $this->group = $authGroup ?? $this->group;
         $this->class = $authClass ?? $this->class;
-        $this->status = $authStatus;
+        $this->status = $authStatus ?? $this->status;
         $this->display = $displayName ?? $this->display;
         $this->dir = $dir ?? $this->dir;
+        $this->extra = $extra ?? $this->extra;
     }
 
     public function addCertInfo(?string $key, ?string $salt): void
@@ -74,7 +76,7 @@ class MockUser implements IUserCert
         return $this->class;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return $this->status;
     }
@@ -97,6 +99,11 @@ class MockUser implements IUserCert
     public function getPubKey(): string
     {
         return $this->key;
+    }
+
+    public function getExtra(): array
+    {
+        return $this->extra;
     }
 }
 
@@ -227,7 +234,7 @@ class MockArray implements ArrayAccess, Countable, Iterator
 }
 
 
-class MockStatusNever implements \kalanis\kw_auth\Interfaces\IStatus
+class MockStatusNever implements \kalanis\kw_auth_sources\Interfaces\IStatus
 {
     public function allowLogin(?int $status): bool
     {
