@@ -19,7 +19,7 @@ check also can say if that user can use his certificates to check the data.
 ```
 {
     "require": {
-        "alex-kalanis/kw_auth_forms": "2.0"
+        "alex-kalanis/kw_auth_forms": "3.0"
     }
 }
 ```

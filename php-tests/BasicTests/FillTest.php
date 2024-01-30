@@ -24,10 +24,10 @@ class FillTest extends \CommonTestClass
         $cookie = new \MockArray();
         $form = $this->getForm(['dummy' => $hash]);
         $user = new \MockUser();
-        $user->addCertInfo('empty', $salt);
+        $user->updateCertInfo('empty', $salt);
 
         // set it
-        AuthForm::digest('dummy', new ImplodeHash($user, new Always()), $form, $inputs, $cookie);
+        AuthForm::digest('dummy', new ImplodeHash($user, $user, new Always()), $form, $inputs, $cookie);
 
         // validate
         $this->assertEquals($isValid, $form->isValid());
@@ -46,10 +46,10 @@ class FillTest extends \CommonTestClass
         $cookie = new \MockArray();
         $form = $this->getForm(['dummy' => $hash]);
         $user = new \MockUser();
-        $user->addCertInfo('empty', $salt);
+        $user->updateCertInfo('empty', $salt);
 
         // set it
-        AuthForm::tokenAndDigest('dummy', new ImplodeHash($user, new Always()), $form, $inputs, $cookie);
+        AuthForm::tokenAndDigest('dummy', new ImplodeHash($user, $user, new Always()), $form, $inputs, $cookie);
 
         // validate
         $this->assertEquals($isValid, $form->isValid());

@@ -50,8 +50,8 @@ class RulesTest extends \CommonTestClass
     public function testHash(string $hashValue, string $inputValue, array $against, string $userSalt, bool $displayError, string $glue)
     {
         $user = new \MockUser();
-        $user->addCertInfo('none', $userSalt);
-        $lib = new ImplodeHash($user, new Always(), $glue);
+        $user->updateCertInfo('none', $userSalt);
+        $lib = new ImplodeHash($user, $user, new Always(), $glue);
         $lib->setBoundForm($this->getForm());
         $lib->setAgainstValue($against);
         $lib->setErrorText('Failed');
@@ -73,8 +73,8 @@ class RulesTest extends \CommonTestClass
     public function testHashFail(string $hashValue, string $inputValue, array $against, string $userSalt, bool $displayError, string $glue)
     {
         $user = new \MockUser();
-        $user->addCertInfo('none', $userSalt);
-        $lib = new ImplodeHash($user, new \MockStatusNever(), $glue); // due mock status class it will always fails
+        $user->updateCertInfo('none', $userSalt);
+        $lib = new ImplodeHash($user, $user, new \MockStatusNever(), $glue); // due mock status class it will always fails
         $lib->setBoundForm($this->getForm());
         $lib->setAgainstValue($against);
         $lib->setErrorText('Failed');
@@ -106,9 +106,9 @@ class RulesTest extends \CommonTestClass
         openssl_sign($inputValue, $signature, $privateKey, "sha256WithRSAEncryption");
 
         $user = new \MockUser();
-        $user->addCertInfo($publicData['key'], $userSalt);
+        $user->updateCertInfo($publicData['key'], $userSalt);
 
-        $lib = new ImplodeKeys($user, new Always(), $glue);
+        $lib = new ImplodeKeys($user, $user, new Always(), $glue);
         $lib->setBoundForm($this->getForm());
         $lib->setAgainstValue($against);
         $lib->setErrorText('Failed');
@@ -141,9 +141,9 @@ class RulesTest extends \CommonTestClass
         openssl_sign($inputValue, $signature, $privateKey, "sha256WithRSAEncryption");
 
         $user = new \MockUser();
-        $user->addCertInfo($publicData['key'], $userSalt);
+        $user->updateCertInfo($publicData['key'], $userSalt);
 
-        $lib = new ImplodeKeys($user, new \MockStatusNever(), $glue); // due mock status class it will always fails
+        $lib = new ImplodeKeys($user, $user, new \MockStatusNever(), $glue); // due mock status class it will always fails
         $lib->setBoundForm($this->getForm());
         $lib->setAgainstValue($against);
         $lib->setErrorText('Failed');

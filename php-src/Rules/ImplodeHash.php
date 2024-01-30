@@ -3,7 +3,8 @@
 namespace kalanis\kw_auth_forms\Rules;
 
 
-use kalanis\kw_accounts\Interfaces\IUserCert;
+use kalanis\kw_accounts\Interfaces\ICert;
+use kalanis\kw_accounts\Interfaces\IUser;
 use kalanis\kw_auth_sources\Interfaces\IStatus;
 use kalanis\kw_rules\Exceptions\RuleException;
 use kalanis\kw_rules\Interfaces\IValidate;
@@ -16,8 +17,10 @@ use kalanis\kw_rules\Interfaces\IValidate;
  */
 class ImplodeHash extends ARule
 {
-    /** @var IUserCert */
-    protected $keySource = null;
+    /** @var IUser */
+    protected $userSource = null;
+    /** @var ICert */
+    protected $certSource = null;
     /** @var IStatus */
     protected $libStatus = null;
     /** @var string */
@@ -25,9 +28,10 @@ class ImplodeHash extends ARule
     /** @var string */
     protected $algorithm = '';
 
-    public function __construct(IUserCert $keySource, IStatus $libStatus, string $glue = '|', string $algorithm = 'md5')
+    public function __construct(IUser $userSource, ICert $certSource, IStatus $libStatus, string $glue = '|', string $algorithm = 'md5')
     {
-        $this->keySource = $keySource;
+        $this->userSource = $userSource;
+        $this->certSource = $certSource;
         $this->libStatus = $libStatus;
         $this->glue = $glue;
         $this->algorithm = $algorithm;
@@ -35,10 +39,10 @@ class ImplodeHash extends ARule
 
     public function validate(IValidate $entry): void
     {
-        if (!$this->libStatus->allowCert($this->keySource->getStatus())) {
+        if (!$this->libStatus->allowCert($this->userSource->getStatus())) {
             throw new RuleException($this->errorText);
         }
-        $col = implode($this->glue, $this->sentInputs() + [$this->keySource->getPubSalt()]);
+        $col = implode($this->glue, $this->sentInputs() + [$this->certSource->getSalt()]);
         if (hash($this->algorithm, $col) != strval($entry->getValue())) {
             throw new RuleException($this->errorText);
         }

@@ -50,7 +50,7 @@ class MockUser implements IUserCert
         $this->extra = $extra ?? $this->extra;
     }
 
-    public function addCertInfo(?string $key, ?string $salt): void
+    public function updateCertInfo(?string $key, ?string $salt): void
     {
         $this->key = $key ?? $this->key;
         $this->salt = $salt ?? $this->salt;
@@ -91,7 +91,7 @@ class MockUser implements IUserCert
         return $this->dir;
     }
 
-    public function getPubSalt(): string
+    public function getSalt(): string
     {
         return $this->salt;
     }
