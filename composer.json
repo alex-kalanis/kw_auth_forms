@@ -14,6 +14,7 @@
         "alex-kalanis/kw_accounts": ">=3.0 <4",
         "alex-kalanis/kw_auth_sources": ">=5.0 <6",
         "alex-kalanis/kw_forms": ">=3.0 <4",
+        "alex-kalanis/kw_rules": ">=3.0 <4",
         "php": ">=7.4.0"
     },
     "require-dev": {
