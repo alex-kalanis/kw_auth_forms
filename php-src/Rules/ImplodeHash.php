@@ -17,16 +17,11 @@ use kalanis\kw_rules\Interfaces\IValidate;
  */
 class ImplodeHash extends ARule
 {
-    /** @var IUser */
-    protected $userSource = null;
-    /** @var ICert */
-    protected $certSource = null;
-    /** @var IStatus */
-    protected $libStatus = null;
-    /** @var string */
-    protected $glue = '';
-    /** @var string */
-    protected $algorithm = '';
+    protected IUser $userSource;
+    protected ICert $certSource;
+    protected IStatus $libStatus;
+    protected string $glue = '';
+    protected string $algorithm = '';
 
     public function __construct(IUser $userSource, ICert $certSource, IStatus $libStatus, string $glue = '|', string $algorithm = 'md5')
     {

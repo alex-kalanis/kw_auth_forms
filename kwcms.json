@@ -5,7 +5,7 @@
   "source": "https://github.com/alex-kalanis/kw_auth_forms",
   "license": "BSD-3-Clause",
   "require": {
-    "php": ">=7.2.0"
+    "php": ">=7.4.0"
   },
   "suggest": {
   },

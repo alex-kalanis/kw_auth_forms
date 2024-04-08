@@ -15,8 +15,7 @@ use kalanis\kw_rules\Rules\ARule as OrigRule;
  */
 abstract class ARule extends OrigRule
 {
-    /** @var Form|null */
-    protected $boundForm = null;
+    protected ?Form $boundForm = null;
 
     public function setBoundForm(Form $boundForm): void
     {

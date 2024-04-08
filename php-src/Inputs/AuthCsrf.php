@@ -18,10 +18,8 @@ use kalanis\kw_rules\Interfaces\IRules;
  */
 class AuthCsrf extends Hidden
 {
-    /** @var ICsrf */
-    protected $csrf = null;
-    /** @var string */
-    protected $csrfTokenAlias = '';
+    protected ICsrf $csrf;
+    protected string $csrfTokenAlias = '';
 
     public function __construct()
     {

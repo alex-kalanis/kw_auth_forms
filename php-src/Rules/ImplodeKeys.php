@@ -17,14 +17,10 @@ use kalanis\kw_rules\Interfaces\IValidate;
  */
 class ImplodeKeys extends ARule
 {
-    /** @var IUser */
-    protected $userSource = null;
-    /** @var ICert */
-    protected $certSource = null;
-    /** @var IStatus */
-    protected $libStatus = null;
-    /** @var string */
-    protected $glue = '';
+    protected IUser $userSource;
+    protected ICert $certSource;
+    protected IStatus $libStatus;
+    protected string $glue = '';
 
     public function __construct(IUser $userSource, ICert $certSource, IStatus $libStatus, string $glue = '|')
     {

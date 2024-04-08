@@ -11,17 +11,18 @@
     "type": "library",
     "require": {
         "ext-openssl": "*",
-        "alex-kalanis/kw_accounts": ">=2.0 <3",
-        "alex-kalanis/kw_auth_sources": ">=4.0 <5",
-        "alex-kalanis/kw_forms": ">=2.2 <3",
-        "php": ">=7.3.0"
+        "alex-kalanis/kw_accounts": ">=3.0 <4",
+        "alex-kalanis/kw_auth_sources": ">=5.0 <6",
+        "alex-kalanis/kw_forms": ">=3.0 <4",
+        "php": ">=7.4.0"
     },
     "require-dev": {
+        "shipmonk/composer-dependency-analyser": "^1.4",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "psr/container": "=2.0.2",
-        "phpunit/phpunit": ">=7.2 <=9"
+        "phpunit/phpunit": ">=8.0 <=9"
     },
     "suggest": {
     },
